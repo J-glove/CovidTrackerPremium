@@ -407,7 +407,6 @@ int main() {
                     durationMap = chrono::duration_cast<chrono::microseconds> (end-start);
 
                     start = chrono::high_resolution_clock().now();
-                    cout << name << endl;
                     resultsSet.emplace(pair<string, set<Date>>(name, (searchSet(name, fromD, toD))));
                     end = chrono::high_resolution_clock().now();
                     durationSet = chrono::duration_cast<chrono::microseconds> (end-start);
@@ -415,7 +414,6 @@ int main() {
                     for (auto mem : resultsSet){
 
                         if (mem.first == name){
-                            //cout << "Set, county "<< mem.first <<"found" << endl;
                             if ((fromD == *mem.second.begin())) {
                                 //if/else statement essentially checks for where in the date set the time frame begins
                                 //this accounts for multiple searches of the same county
@@ -521,7 +519,7 @@ int main() {
                     //take in the first value as integer
                     try {
                         firstResInt = stoi(firstRes);
-                        //atempt conversion to int, if fails print the message below, prompt user for another input
+                        //attempt conversion to int, if fails print the message below, prompt user for another input
                         firstGood = true;
                     } catch (exception e) {
                         cout << "-" << "---------------------------------------------------------" << "-" << endl;
@@ -943,8 +941,6 @@ set<Date> searchSet(string name, Date from, Date to){
     int index = name.find(',');
     string county = name.substr(0, index);
     string state = name.substr(index + 2);
-    cout << county << endl;
-    cout << state << endl;
     //parse the string "name" for further evaluation
     State tempState = State(state);
     County tempCounty = County(county, state);
@@ -997,12 +993,9 @@ set<Date> searchSet(string name, Date from, Date to){
 
             //the code below inserts all dates in the timeframe in the returned set
             //same logic as the insertion in searchMap
-            cout << from.getDate() << endl;
-            cout << to.getDate() << endl;
 
             auto iter = memC->entriesSet.find(from);
             while (iter != memC->entriesSet.find(to)){
-                cout << iter->cases << " " << iter->deaths << endl;
                 returned.insert(*iter);
                 iter++;
             }
